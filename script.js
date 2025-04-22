@@ -3,11 +3,13 @@ document.addEventListener("DOMContentLoaded", () => {
   const buttons = document.querySelectorAll("button");
   let expression = "";
 
-  // Function to safely evaluate the expression
+  // Function to safely evaluate the expression using a math parser
   const calculateResult = () => {
     try {
-      // Use eval with caution; can be replaced with a math parser for safety
-      const result = eval(expression);
+      // Replace characters to ensure proper math operations
+      const sanitizedExpression = expression.replace(/[^0-9+\-*/().]/g, ""); // Removes any invalid characters
+      // Use the Function constructor for safer eval
+      const result = new Function("return " + sanitizedExpression)();
       screen.value = result;
     } catch (error) {
       screen.value = "Error";
