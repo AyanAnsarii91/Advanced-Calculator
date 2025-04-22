@@ -7,9 +7,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const calculateResult = () => {
     try {
       // Replace characters to ensure proper math operations
-      const sanitizedExpression = expression.replace(/[^0-9+\-*/().]/g, ""); // Removes any invalid characters
+      const sanitizedExpression = expression
+        .replace(/[^0-9+\-*/().]/g, "");  // Removes any invalid characters
       // Use the Function constructor for safer eval
-      const result = new Function("return " + sanitizedExpression)();
+      const result = new Function('return ' + sanitizedExpression)();
       screen.value = result;
     } catch (error) {
       screen.value = "Error";
@@ -49,3 +50,4 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
+
